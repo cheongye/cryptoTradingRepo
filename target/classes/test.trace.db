@@ -1,0 +1,18 @@
+2024-08-06 15:23:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DESC[*] TRADING_PAIR"; expected "DELETE, DROP, DECLARE, DEALLOCATE"; SQL statement:
+desc trading_pair [42001-200]
+2024-08-06 15:23:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ATRADING_PAIR" not found; SQL statement:
+drop table atrading_pair [42102-200]
+2024-08-06 15:23:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRADING_PAIR" not found; SQL statement:
+drop table trading_pair [42102-200]
+2024-08-06 15:32:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "TRADING_PAIR[*] INFORMATION_SCHEMA.TABLE_TYPES INFORMATION_SCHEMA.TABLES"; expected "TRUNCATE"; SQL statement:
+TRADING_PAIR INFORMATION_SCHEMA.TABLE_TYPES INFORMATION_SCHEMA.TABLES [42001-200]
+2024-08-06 15:32:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (TRADING_PAIR: ""BID_PRICE"" DECIMAL(18, 8) NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."TRADING_PAIR"("SYMBOL","BID_PRICE","ASK_PRICE")VALUES(?,?,?) [22018-200]
+2024-08-06 15:32:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (TRADING_PAIR: ""BID_PRICE"" DECIMAL(18, 8) NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."TRADING_PAIR"("SYMBOL","BID_PRICE","ASK_PRICE")VALUES(?,?,?) [22018-200]

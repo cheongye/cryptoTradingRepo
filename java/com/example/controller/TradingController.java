@@ -48,11 +48,15 @@ public class TradingController {
     
 	private static final Logger logger = LoggerFactory.getLogger(TradingController.class);
 	
-    
 
+    //Task 4
+    
+	 //sample
+		/*
+		 * curl -X GET http://localhost:8080/api/wallet
+		 */		
     @GetMapping("/wallet")
     public ResponseEntity<List<UserWalletDTO>> getWallet() {
-    	System.out.println("IAM AT THIS APIIIIIII");
     	
     	logger.info("inside wallet API" );
     	List<UserWalletDTO> walletDto= userWalletService.getWalletBalance(testId);
@@ -63,7 +67,11 @@ public class TradingController {
     }
     
     
-
+    //Task 2
+	/*
+	 * curl -X GET http://localhost:8080/api/price
+	 */
+    
     @GetMapping("/price")
     public ResponseEntity<List<TradingPair>> getBestAggregatedPrice() {
     	List<TradingPair> tradingPairs = priceService.getBestPrices(); 
@@ -76,6 +84,34 @@ public class TradingController {
     }
     
     
+    
+
+    //Task 3
+    
+	/*
+	 * curl -X POST http://localhost:8080/api/trade ^ -H
+	 * "Content-Type: application/json" ^ -d
+	 * "{\"fromCurrency\": \"USDT\", \"toCurrency\": \"BTC\", \"fromAmountToTrade\": 5000, \"tradeType\": \"BUY\"}"
+	 * 
+	 * 
+	 * curl -X POST http://localhost:8080/api/trade ^ -H
+	 * "Content-Type: application/json" ^ -d
+	 * "{\"fromCurrency\": \"BTC\", \"toCurrency\": \"ETH\", \"fromAmountToTrade\": 0.001, \"tradeType\": \"BUY\"}"
+	 * 
+	 * 
+	 * 
+	 * curl -X POST http://localhost:8080/api/trade ^ -H
+	 * "Content-Type: application/json" ^ -d
+	 * "{\"fromCurrency\": \"USDT\", \"toCurrency\": \"ETH\", \"fromAmountToTrade\": 75000, \"tradeType\": \"BUY\"}"
+	 * 
+	 * 
+	 * 
+	 * curl -X POST http://localhost:8080/api/trade ^ -H
+	 * "Content-Type: application/json" ^ -d
+	 * "{\"fromCurrency\": \"USDT\", \"toCurrency\": \"BTC\", \"fromAmountToTrade\": 7500, \"tradeType\": \"BUY\"}"
+	 * 
+	 */
+    
     @PostMapping("/trade")
     public ResponseEntity<String> trade(@RequestBody TradeRequestDTO tradeRequest) {
         String response = tradeService.
@@ -84,24 +120,34 @@ public class TradingController {
         return ResponseEntity.ok(response);
     }
     
-    @GetMapping("/test")
-    public ResponseEntity<String> test() {
-        return ResponseEntity.ok("Test successful");
-    }
-
+    
+    
+    
+    //Task 5
+    
+	/*
+	 * curl -X GET http://localhost:8080/api/trading-history
+	 */    
     
     @GetMapping("/trading-history")
-    public ResponseEntity<Map<String, Object>> getTradingHistory() {
-    	List<Map<String, Object>> tradeList = tradingHistoryService.getTradesByUserId(testId);
-        
-        if (tradeList.isEmpty()) {
+	public ResponseEntity<Map<String, Object>> getTradingHistory() {
+		List<Map<String, Object>> tradeList = tradingHistoryService.getTradesByUserId(testId);
+	    
+	    if (tradeList.isEmpty()) {
 			throw new IllegalArgumentException("No trading history at the moment, please trade.");
-        }
+	    }
+	
+	    Map<String, Object> response = new HashMap<>();
+	
+	    response.put("trades", tradeList);
+	    return ResponseEntity.ok(response);
+	}
 
-        Map<String, Object> response = new HashMap<>();
- 
-        response.put("trades", tradeList);
-        return ResponseEntity.ok(response);
+
+
+	@GetMapping("/test")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("Test successful");
     }
     
     
